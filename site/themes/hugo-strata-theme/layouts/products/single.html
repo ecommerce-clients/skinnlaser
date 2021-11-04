@@ -1,0 +1,98 @@
+{{ define "main" }}
+
+<!-- <br> -->
+<script>
+  var pagesnames = 'product';
+</script>
+<script src="https://controllers.eralive.net/v1/Controllers/productController.js"></script>
+
+    <!-- Sart Single product -->
+    <section class="ec-page-content section-space-p">
+      <div class="container">
+          <div class="row">
+              <div class="ec-pro-rightside ec-common-rightside col-lg-12 col-md-12">
+
+                  <!-- Single product content Start -->
+                  <div class="single-pro-block">
+                      <div class="single-pro-inner">
+                          <div class="row">
+                              <div class="single-pro-img single-pro-img-no-sidebar">
+                                  <div class="single-product-scroll">
+                                    <span class="ec-360-lbl" data-link-action="quickview" style="height:20px;color: var(--font)!important;opacity: unset!important;cursor: unset;border-radius: 0 15px 15px 0;background-color: var(--background)!important;font-weight: 700;">
+                                       
+                                       
+                                            
+                                        new
+                                    </span>
+                                      <div class="single-product-cover">
+                                        {{ range .Params.Images }}
+                                          <div class="single-slide zoom-image-hover" style="height: 300px;">
+                                              <img class="img-responsive img-fluid mx-auto" src="{{ .image | absURL }}" alt="{{ .Title }}">
+                                          </div>
+                                          {{ end }}
+                                        
+                                      </div>
+                                      <div class="single-nav-thumb">
+                                        {{ range .Params.Images }}
+                                          <div class="single-slide">
+                                              <img class="img-responsive" src="{{ .image | absURL }}" alt="{{ .Title }}">
+                                          </div>
+                                          {{ end }}
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="single-pro-desc single-pro-desc-no-sidebar">
+                                  <div class="single-pro-content">
+                                      <h5 class="ec-single-title"><script>document.write(decodeURIComponent('{{ .Title }}').replaceAll('+',' '))</script></h5>
+                                      <p>Category: <script>document.write(decodeURIComponent('{{ .Params.Category }}').replaceAll('+',' '))</script></p>
+                                      <div class="ec-single-desc"><script>document.write(decodeURIComponent('{{ .Params.ShortDescription | markdownify }}').replaceAll('+',' '))</script></div>
+
+                                      <div class="ec-single-price-stoke">
+                                          <div class="ec-single-price">
+                                            {{ if .Params.PriceBefore }}
+                                            <span class="old-price">PKR <script>document.write(new Intl.NumberFormat().format(parseFloat('{{ .Params.PriceBefore }}')))</script></span>
+                                            {{ end }}
+                                              <span class="new-price">PKR <script>document.write(new Intl.NumberFormat().format(parseFloat('{{ .Params.Price }}')))</script></span>
+                                          </div>
+                                          
+                                      </div>
+   
+                                      <div class="ec-single-qty">
+                                          <!-- <div class="qty-plus-minus">
+                                              <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                          </div> -->
+                                          <div class="ec-single-cart ">
+                                              <button class="btn btn-secondary" onclick="Check({{ .Params.ProductID }},{{ .Title }},{{ .Params.Description }},{{ .Params.Price }}
+                                              ,{{ range first 1 .Params.Images }}{{ .image | absURL }}{{ end }},1)">Add To Cart</button>
+                                          </div>
+                                        
+                                          <div class="ec-single-quickview">
+                                              <a href="#" class="ec-btn-group btn btn-secondary" id="whatsapp{{ .Params.ProductID }}" onclick="whatsapp('{{ .Params.ProductID }}','{{ .Title }}')" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true" style="font-size: 20px;"></i></a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!--Single product content End -->
+              
+              </div>
+
+          </div>
+      </div>
+  </section>
+  <!-- End Single product -->
+
+
+
+
+
+<style>
+  .img-fluid{
+    height: 100%;
+  }
+</style>
+
+
+{{ end }}
